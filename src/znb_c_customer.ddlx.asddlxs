@@ -1,0 +1,56 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+ headerInfo: {
+ typeName: 'Customer',
+ typeNamePlural: 'Customers',
+ title.value: 'Name'
+ }
+ }
+annotate entity ZNB_C_CUSTOMER with
+{
+  @UI.facet: [ {
+   id: 'idCustomer',
+   type: #IDENTIFICATION_REFERENCE,
+   label: 'Customer Info',
+   position: 10
+   },
+    {
+  id: 'idAccount',
+  type: #LINEITEM_REFERENCE,
+  label: 'Account Info',
+  position: 20,
+  targetElement: '_account'
+  }
+   ]
+
+  @UI.identification: [{ position : 10 }]
+  @EndUserText.label: 'Id'
+  CustomerId;
+  @UI.lineItem: [{ position : 20 }]
+  @UI.identification: [{ position : 20 }]
+  @UI.selectionField: [{ position : 10 }]
+  @EndUserText.label: 'Name'
+  Name;
+  @UI.identification: [{ position : 30 }]
+  @EndUserText.label: 'Addr'
+  Address;
+  @UI.lineItem: [{ position : 40 }]
+  @UI.identification: [{ position : 40 }]
+  @EndUserText.label: 'Phone Number'
+  Contact;
+  @UI.lineItem: [{ position : 50 }]
+  @UI.identification: [{ position : 50 }]
+  @UI.selectionField: [{ position : 20 }]
+  @EndUserText.label: 'Mail Id'
+  Email;
+  @UI.identification: [{ position : 60 }]
+  @EndUserText.label: 'DoB'
+  @UI.selectionField: [{ position : 30 }]
+  DateOfBirth;
+
+  @UI.identification: [{ position : 70 }]
+  @EndUserText.label: 'Birth Week'
+  BirthDayWeek;
+
+
+}

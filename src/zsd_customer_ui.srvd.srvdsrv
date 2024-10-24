@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition - Customer UI'
+define service ZSD_CUSTOMER_UI {
+  expose ZNB_C_CUSTOMER;
+  expose ZNB_C_ACCOUNT;
+  expose ZNB_C_TRANSACTION;
+}

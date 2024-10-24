@@ -1,0 +1,53 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+ headerInfo: {
+ typeName: 'Account',
+ typeNamePlural: 'Accounts',
+ title.value: 'AccTypeDesc'
+}
+}
+annotate entity ZNB_C_ACCOUNT with
+{
+  @UI.facet: [ {
+   id: 'idAccount',
+   type: #IDENTIFICATION_REFERENCE,
+   label: 'Accounts',
+   position: 10
+   },
+    {
+  id: 'idTransaction',
+  type: #LINEITEM_REFERENCE,
+  label: 'Transaction Info',
+  position: 20,
+  targetElement: '_transaction'
+  }]
+ 
+  @UI.identification: [ {position: 10} ]
+  @EndUserText.label: 'Acc ID'
+  AccountId;
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [ {position: 20} ]
+  @EndUserText.label: 'Customer ID'
+  CustomerId;
+  @UI.lineItem: [ { position: 10} ]
+  @UI.identification: [ {position: 30} ]
+  @EndUserText.label: 'Account Type'
+  AccountType;
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [ {position: 40} ]
+  @EndUserText.label: 'Account Description'
+  AccTypeDesc;
+  @UI.lineItem: [ { position: 10} ]
+  @UI.identification: [ {position: 50} ]
+  @EndUserText.label: 'Acc Balance'
+  Balance;
+  @UI.lineItem: [ { position: 10} ]
+  @UI.identification: [ {position: 60} ]
+  @EndUserText.label: 'Created Date'
+  DateCreated;
+  @UI.identification: [ {position: 70} ]
+  @EndUserText.label: 'Balance in USD'
+  BalanceAmountInUSD;
+ 
+
+}

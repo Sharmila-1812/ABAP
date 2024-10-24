@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition - Transaction UI'
+define service ZSD_TRANSACTION_UI {
+  expose ZNB_C_TRANSACTION;
+}
