@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition - Customer Custom UI'
+define service Zsd_customer_custom_ui {
+  expose ZCE_SHA_Customer_CUSTOM;
+}

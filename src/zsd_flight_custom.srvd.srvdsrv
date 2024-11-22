@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition - Flight Custom Entity'
+define service ZSD_FLIGHT_CUSTOM {
+  expose ZCE_SHA_FLIGHT_CUSTOM as flight;
+}
