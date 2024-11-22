@@ -1,0 +1,53 @@
+managed implementation in class zbp_i_account unique;
+strict ( 2 );
+
+define behavior for ZI_ACCOUNT alias Account
+persistent table znb_account
+lock master
+authorization master ( instance )
+early numbering
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) AccountId;
+  validation valCreatedDate on save {create; field DateCreated;}
+  association _transaction { create; }
+  //field ( numbering : managed) AccountId ;
+
+  mapping for znb_account{
+  AccountId = account_id;
+  AccountType = account_type;
+  Balance = balance;
+  CurrencyKey = currency_key;
+  CustomerId = customer_id;
+  DateCreated = date_created;
+  }
+}
+
+define behavior for ZI_TRANSACTION alias Transaction
+persistent table znb_transactn
+lock dependent by _account
+authorization dependent by _account
+early numbering
+//etag master <field_name>
+{
+
+  update;
+  delete;
+  field ( readonly ) TransactionId,AccountId;
+  //field ( numbering : managed) TransactionId;
+  association  _account;
+
+  mapping for znb_transactn{
+    AccountId = account_id;
+    TransactionId = transaction_id;
+    TransactionType = transaction_type;
+    Amount = amount;
+    CurrencyKey = currency_key;
+    Description =description;
+    TransDate = trans_date;
+
+  }
+}

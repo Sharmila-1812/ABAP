@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition - Account UI'
+define service ZSD_ACCOUNT_RAP {
+  expose ZC_ACCOUNT;
+  expose ZC_TRANSACTION;
+}
