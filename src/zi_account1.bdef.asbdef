@@ -1,0 +1,57 @@
+managed implementation in class zbp_i_account1 unique;
+strict ( 2 );
+
+define behavior for ZI_ACCOUNT1 alias Account
+persistent table znb_account1
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) AccUuid;
+  //field (readonly:update) Balance,CurrencyKey ; //readonly-- unable to add next transaction
+  validation valCreatedDate on save { create; field DateCreated; }
+  //determination detBalance on save  { create;update; field Balance; }
+  association _transaction { create  ( features : instance ); }
+  field ( numbering : managed ) AccUuid;
+   action setzero;
+  action updateBalance parameter ziaccount1_balance_input;
+
+  mapping for znb_account1
+    {
+      AccUuid      = acc_uuid;
+      CustomerName = customer_name;
+      AccountType  = account_type;
+      Balance      = balance;
+      CurrencyKey  = currency_key;
+      DateCreated  = date_created;
+    }
+}
+
+define behavior for ZI_TRANSACTION1 alias Transaction
+persistent table znb_transactn1
+lock dependent by _account
+authorization dependent by _account
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TransUuid, AccUuid;//TransUuid, AccountId;
+  field ( readonly) Amount, CurrencyKey; //-- unable to use action setzero
+  association _account;
+  determination detBalance  on save { create; field Amount, CurrencyKey; }
+  field ( numbering : managed ) TransUuid;
+  action updateAmount parameter zitransaction1_amount_input;
+  mapping for znb_transactn1
+    {
+      TransUuid       = trans_uuid;
+      AccUuid         = acc_uuid;
+      TransactionType = transaction_type;
+      Amount          = amount;
+      CurrencyKey     = currency_key;
+      Description     = description;
+      TransDate       = trans_date;
+    }
+}

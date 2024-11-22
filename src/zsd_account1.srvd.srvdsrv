@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition - Account1 UI'
+define service ZSD_ACCOUNT1 {
+  expose ZC_ACCOUNT1;
+  expose ZC_TRANSACTION1;
+}
