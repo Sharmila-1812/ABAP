@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zsample_class IMPLEMENTATION.
+CLASS ZSAMPLE_CLASS IMPLEMENTATION.
+
+
  METHOD if_oo_adt_classrun~main.
 
 * DATA: ls_customer TYPE TABLE of znb_customer.
